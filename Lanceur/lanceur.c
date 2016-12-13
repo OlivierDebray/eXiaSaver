@@ -4,10 +4,13 @@
 #include <unistd.h>
 #include <time.h>
 
+#include "lecture_stats.c"
+
 void stats(int type , int param) ;
 
 void lancementStatique()
 {
+	printf("%s" , getenv("EXIASAVER2_SLEEP")) ;
 	printf("Lancement du TermSaver statique\n") ;
 	sleep(1) ;
 
@@ -57,8 +60,10 @@ void lancementInteractif()
 
 void lancementStatistiques()
 {
-        printf("Affichage des statistiques\n") ;
+        printf("Affichage des statistiques\n\n") ;
         sleep(1) ;
+
+	lecture_stats() ;
 }
 
 void lancementAleatoire()
@@ -86,23 +91,29 @@ void lancementAleatoire()
 void stats(int type , int param)
 {
 	time_t t = time(NULL) ;
+	char *p ;
+	int len ;
 
 	FILE* stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "a") ;
+
+        p = ctime(&t) ;
+        len = strlen(p) ;
+
+        fprintf(stats , "     %.*s     |" , len - 1 , p) ;
+
 
 	switch (type)
 	{
 		case 1 :
-			fprintf(stats , "Statique     |") ;
+			fprintf(stats , "     Statique     |") ;
 			break ;
                 case 2 :
-                        fprintf(stats , "Dynamique    |") ;
+                        fprintf(stats , "     Dynamique    |") ;
 			break ;
                 case 3 :
-                        fprintf(stats , "Interactif   |") ;
+                        fprintf(stats , "     Interactif   |") ;
 			break ;
 	}
 
-	fprintf(stats , "     %d     |" , param) ;
-
-        fprintf(stats , "     %s" , asctime(localtime(&t))) ;
+	fprintf(stats , "     %d\n" , param) ;
 }
