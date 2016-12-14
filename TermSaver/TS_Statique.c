@@ -1,44 +1,73 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <sys/ioctl.h>
 
-int main(int argc, char* argv[])
+void printf_middle(int hauteur)
 {
+        unsigned int n ;
+        struct winsize w ;
+        ioctl(0 , TIOCGWINSZ , &w) ;
 
+        for (n=0 ; n < ((w.ws_row - hauteur) / 4) ; n++)
+                printf("\n") ;
+}
+
+void printf_center(const char *str)
+{
+	unsigned int n ;
+	struct winsize w ;
+	ioctl(0 , TIOCGWINSZ , &w) ;
+
+	for (n= 0 ; n < ((w.ws_col - strlen(str)) / 4) ; n++)
+		printf(" ") ;
+	printf("%s" , str) ;
+}
+
+void main(int argc, char* argv[])
+{
 system("clear");
 
-int caractere;
+char img[100] ;
 
-FILE *fichier = NULL;
-fichier = fopen("ecran2.pbm", "r");
+int ligne = 0 , nb_ligne = 0 ;
 
+char chaine[256] ;
+
+strcpy(img , "/ecran") ;
+strcat(strcat(img , argv[1]) , ".pbm") ;
+
+FILE *fichier = fopen(strcat(getenv("EXIASAVER1_PBM") , img), "r");
 
     if (fichier != NULL)
-
     {
-        while (caractere != EOF)
-        {
-            caractere = fgetc(fichier);
-            
+	while (fgets(chaine , 256 , fichier) != NULL)
+		nb_ligne++ ; 
 
+	printf_middle(nb_ligne) ;
+	rewind(fichier) ;
 
-            if(caractere =='0')
-            {
-            	caractere = 32;
-            }
+	while (fgets(chaine , 256 , fichier) != NULL)
+	{
+		if (ligne > 1)
+		{
+			for (int i = 0 ; i < 256 ; i++)
+			{
+				if (chaine[i] == '0')
+					chaine[i] = ' ' ;
+				else if (chaine[i] == '1')
+					chaine[i] = 'X' ;
+				else if (chaine[i] == '\n')
+					chaine[i] = '\n' ;
+			}
 
-            else if(caractere == '1')
-            {
-            	caractere = 88;
-            }
-
-	printf("%c", caractere);
-
-
-        }
-
-    	fclose(fichier);
-	
+			printf_center(chaine) ;
+		}
+		ligne++ ;
+	}
+    	fclose(fichier);	
     }
 
-    return 0;
+	getchar() ;
+	system("clear") ;
 }

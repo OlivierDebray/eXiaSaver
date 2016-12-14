@@ -36,3 +36,22 @@
      Tue Dec 13 22:36:12 2016     |     Dynamique    |     32583
      Tue Dec 13 22:36:16 2016     |     Interactif   |     32743
      Wed Dec 14 09:41:17 2016     |     Statique     |     1
+     Wed Dec 14 10:56:56 2016     |     Dynamique    |     750980621
+     Wed Dec 14 12:16:41 2016     |     Dynamique    |     1693519284
+     Wed Dec 14 12:17:15 2016     |     Interactif   |     -1279391641
+     Wed Dec 14 12:20:12 2016     |     Dynamique    |     723612826
+     Wed Dec 14 12:22:56 2016     |     Dynamique    |     -1075943561
+     Wed Dec 14 12:24:04 2016     |     Dynamique    |     1981660133
+     Wed Dec 14 13:08:38 2016     |     Dynamique    |     1229467448
+     Wed Dec 14 13:08:40 2016     |     Interactif   |     -500484193
+     Wed Dec 14 13:08:42 2016     |     Dynamique    |     -301733660
+     Wed Dec 14 13:08:43 2016     |     Interactif   |     -1532682923
+     Wed Dec 14 13:08:45 2016     |     Dynamique    |     -1336751605
+     Wed Dec 14 13:08:47 2016     |     Interactif   |     -479928264
+     Wed Dec 14 13:19:36 2016     |     Dynamique    |     1710345805
+     Wed Dec 14 13:38:45 2016     |     Interactif   |     -1451002033
+     Wed Dec 14 13:59:38 2016     |     Dynamique    |     1786256008
+     Wed Dec 14 13:59:40 2016     |     Interactif   |     -1505300081
+     Wed Dec 14 15:33:19 2016     |     Interactif   |     -703939720
+     Wed Dec 14 15:33:21 2016     |     Interactif   |     -8032446
+     Wed Dec 14 15:33:23 2016     |     Dynamique    |     -1969512398

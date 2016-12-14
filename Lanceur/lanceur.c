@@ -31,7 +31,7 @@ void lancementStatique()
 	while (readdir(PBM_1) != NULL)		// On boucle pour savoir combien de fichiers sont dans le répertoire
 		nb_img++ ;
 
-	if (nb_img == -2)	// Si il n'y a pas de fichiers dans le répertoire, on termine le processus
+	if (nb_img == 0)	// Si il n'y a pas de fichiers dans le répertoire, on termine le processus
 	{
 		printf("--- Pas de fichiers à lire, fin du processus ---\n") ;
 		exit(EXIT_FAILURE) ;
@@ -54,7 +54,7 @@ void lancementStatique()
 
 	sprintf(arg , "%d" , choix) ;
 
-	if (execl(strcat("EXIASAVER_HOME" , "/eXiaSaver") , "eXiaSaver" , arg , NULL) == -1)
+	if (execl(strcat(getenv("EXIASAVER_HOME") , "/TS_Statique") , "TS_Statique" , arg , NULL) == -1)
 		printf("Erreur\n") ;
 }
 
