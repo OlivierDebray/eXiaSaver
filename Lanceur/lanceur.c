@@ -55,7 +55,7 @@ void lancementStatique()
 	sprintf(arg , "%d" , choix) ;
 
 	if (execl(strcat("EXIASAVER_HOME" , "/eXiaSaver") , "eXiaSaver" , arg , NULL) == -1)
-		printf("Erreur") ;
+		printf("Erreur\n") ;
 }
 
 void lancementDynamique()
