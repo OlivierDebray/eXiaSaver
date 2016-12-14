@@ -1,41 +1,61 @@
-#include <stdio.h>
+#include <stdio.h>	// Inclusion des différentes bibliothèques utilisées
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 #include <time.h>
+#include <dirent.h>
 
-#include "lecture_stats.c"
+#include "lecture_stats.c"	
 
-void stats(int type , int param) ;
+void stats(int type , int param) ;	// Prototype de la fonction de sauvegarde des statistiques
+
+int aleatoire()		// Fonction permettant de créer un nombre aléatoire compris entre 0 et 255
+{
+        int rand ;
+        FILE *f = fopen("/dev/urandom" , "r") ;		// On ouvre le fichier urandom qui contient des valeurs générérées à partir des bruits électriques de l'ordinateur
+        fread(&rand , 1 , 1 , f) ;	// On prend un octet parmi ces valeurs
+        fclose(f) ;
+
+	return rand ;
+}
 
 void lancementStatique()
 {
-	printf("%s" , getenv("EXIASAVER2_SLEEP")) ;
 	printf("Lancement du TermSaver statique\n") ;
 	sleep(1) ;
 
-        int rand ;
-        FILE *f = fopen("/dev/urandom" , "r") ;
-        fread(&rand , 1 , 1 , f) ;
-        fclose(f) ;
+	int rand = aleatoire() , choix = 0 , nb_img = -2 , i = 0 ;	// On déclare nb_img à -2 car un répertoire vide contient quand même deux informations
 
-	int choix = 0 ;
+	DIR* PBM_1 = opendir(getenv("EXIASAVER1_PBM")) ; 	// On ouvre le répertoire contenant les fichiers PBM
 
-	int nb_img = 8 ;	// Compléter avec les directives de répertoires
-	int tmp = (256 / nb_img) ;
+	while (readdir(PBM_1) != NULL)		// On boucle pour savoir combien de fichiers sont dans le répertoire
+		nb_img++ ;
 
-	int i = 0 ;
+	if (nb_img == -2)	// Si il n'y a pas de fichiers dans le répertoire, on termine le processus
+	{
+		printf("--- Pas de fichiers à lire, fin du processus ---\n") ;
+		exit(EXIT_FAILURE) ;
+	}
 
-	while (choix == 0)
+	closedir(PBM_1) ;
+
+	int tmp = (256 / nb_img) ;	// On déclare une variable tampon égale au quotient de 256 par le nombre de fichiers
+
+	while (choix == 0)	// On boucle pour voir à combien de tmp rand équivaud au minimum ; exemple : pour 8 images, tmp = 32 , si rand = 70 alors choix = 3
 	{
 		if (rand < (tmp * i))
 			choix = i ;
 		i++ ;
 	}
 
-	stats(1 , choix) ;
+	stats(1 , choix) ;	// On enregistre le résultat dans les statistiques
 
-	printf("choix %d\n" , choix) ;
+	char arg[100] ;
+
+	sprintf(arg , "%d" , choix) ;
+
+	if (execl(strcat("EXIASAVER_HOME" , "/eXiaSaver") , "eXiaSaver" , arg , NULL) == -1)
+		printf("Erreur") ;
 }
 
 void lancementDynamique()
@@ -45,7 +65,7 @@ void lancementDynamique()
 
 	int taille ;
 
-	stats(2 , taille) ;
+	stats(2 , taille) ;      // On enregistre le résultat dans les statistiques
 }
 
 void lancementInteractif()
@@ -55,7 +75,7 @@ void lancementInteractif()
 
 	int pos ;
 
-	stats(3 , pos) ;
+	stats(3 , pos) ;      // On enregistre le résultat dans les statistiques
 }
 
 void lancementStatistiques()
@@ -63,18 +83,14 @@ void lancementStatistiques()
         printf("Affichage des statistiques\n\n") ;
         sleep(1) ;
 
-	lecture_stats() ;
+	lecture_stats() ;	// On appelle la fonction lecture_stats() dans lecture_stats.c
 }
 
 void lancementAleatoire()
 {
-       	int rand ;
+       	int rand = aleatoire() ;
 
-        FILE *f = fopen("/dev/urandom" , "r") ;
-       	fread(&rand , 1 , 1 , f) ;
-       	fclose(f) ;
-
-	switch ((rand % 3) + 1)
+	switch ((rand % 3) + 1)		// On effectue le modulo du nombre entre 0 et 255 obtenu pour le ramener à un tirage au sort entre 3 valeurs
 	{
 		case 1 :
 			lancementStatique() ;
@@ -90,19 +106,19 @@ void lancementAleatoire()
 
 void stats(int type , int param)
 {
-	time_t t = time(NULL) ;
-	char *p ;
+	time_t t = time(NULL) ;		// On initialise l'heure
+	char *p ;	// On définit une chaine de caractère qui servira à stocker l'heure
 	int len ;
 
-	FILE* stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "a") ;
+	FILE* stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "a") ;	// On ouvre le fichier de statistiques
 
-        p = ctime(&t) ;
-        len = strlen(p) ;
+        p = ctime(&t) ;		// On affecte la valeur du temps à la chaine p ...
+        len = strlen(p) ;	// ... dont on récupère la valeur dans len
 
-        fprintf(stats , "     %.*s     |" , len - 1 , p) ;
+        fprintf(stats , "     %.*s     |" , len - 1 , p) ;	// Puis l'on écrit la chaine p dont on a retiré le dernier caractère (soit le retour à la ligne)
 
 
-	switch (type)
+	switch (type)	// On écrit de plus quel type de TermSaver à été lancé
 	{
 		case 1 :
 			fprintf(stats , "     Statique     |") ;
@@ -115,5 +131,5 @@ void stats(int type , int param)
 			break ;
 	}
 
-	fprintf(stats , "     %d\n" , param) ;
+	fprintf(stats , "     %d\n" , param) ;	// On écrit la valeur du paramètre
 }
