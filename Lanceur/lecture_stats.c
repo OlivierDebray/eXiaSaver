@@ -1,31 +1,32 @@
-#include <stdlib.h>	// Inclusion des différentes bibliothèques
+#include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <errno.h>
 
-void recupStats() ;	// Prototype de la fonction recupStats()
+char* recupStats() ;
 
-pid_t creationProcessus()	// Fonction permettant de créer un nouveau processus et de renvoyer le PID
+pid_t creationProcessus()
 {
 	pid_t pid ;
 
-	do	// On fork, et l'on rééssaye si le fork a échoué
+	do
 	{
 		pid = fork() ;
-	} while (pid == -1) ;
+	} while ((pid == -1) && (errno == EAGAIN)) ;
 
 	return pid ;
 }
 
 void processusFils()
 {
-	FILE * stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "r") ;	// On ouvre le fichier des statistiques en lecture
+	FILE * stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "r") ;
 
 	char str[100] ;
 	int i = 0 ;
 
-	while (fgets(str , 100 , stats) != NULL)	// On récupère toutes les lignes du fichier que l'on imprime sur le terminal
+	while (fgets(str , 100 , stats) != NULL)
 		printf("%s" , str) ;
 
 	fclose(stats) ;
@@ -33,23 +34,23 @@ void processusFils()
 
 void processusPere()
 {
-	wait(NULL) ;	// On attend la fin du processus fils
+	wait(NULL) ;
 
 	char rep ;
 
 	printf("\nAppuyez sur O pour afficher les statistiques\n") ;
 
-	scanf("%c" , &rep) ;	// On attend la réponse de l'utilisateur
+	scanf("%c" , &rep) ;
 
-	if((rep == 'O') || (rep == 'o'))	// Si la réponse est O, on appelle une autre fonction ; sinon, le processus se termine
+	if((rep == 'O') || (rep == 'o'))
 		recupStats() ;
 }
 
-void lecture_stats()	// Fonction appelée dans lanceur.c, fait office de "main"
+void lecture_stats()
 {
-	pid_t pid = creationProcessus() ;	// Création d'un nouveau processus
+	pid_t pid = creationProcessus() ;
 
-	switch (pid)	// On teste pour voir si le processus a échoué, si l'on est dans le processus fils ou dans le processus père
+	switch (pid)
 	{
 		case -1 :
 			break ;
@@ -62,16 +63,18 @@ void lecture_stats()	// Fonction appelée dans lanceur.c, fait office de "main"
 	}
 }
 
-void recupStats()	// Fonction servant à récupérer les valeurs de "stats.txt"
+char* recupStats()
 {
-	FILE * stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "r") ;	// On ouvre le fichier
+	FILE * stats = fopen("/mnt/hgfs/eXiaSaver/stats.txt" , "r") ;
 
-	int n = 0 , compteurStat = 0 , compteurDyna = 0 , compteurInte = 0 ;	// On définit les différentes variables
-	char str[100] ;
+	int n = 0 , compteurStat = 0 , compteurDyna = 0 , compteurInte = 0 ;
+	char str[100] , *tmp ;
 
-	while (fgets(str , 100 , stats) != NULL)	// Tant qu'on peut récupérer des lignes dans le fichier ...
+	char *tmpType , *tmpParam ;
+
+	while (fgets(str , 100 , stats) != NULL)
 	{
-		for (int i = 0 ; str[i] != '\n' ; i++)	// ... pour chaque ligne on regarde s'il y a la présence des mots "St" "Dy" ou "In" et l'on incrémente les compteurs en conséquence
+		for (int i = 0 ; str[i] != '\n' ; i++)
 		{
 			if ((str[i - 1] == 'S') && (str[i] == 't'))
 				compteurStat++ ;
@@ -86,11 +89,11 @@ void recupStats()	// Fonction servant à récupérer les valeurs de "stats.txt"
         printf("- Dynamique : %d\n" , compteurDyna) ;
         printf("- Interactif : %d\n" , compteurInte) ;
 
-	if ((compteurStat > compteurDyna) && (compteurStat > compteurInte))	// On regarde quel TermSaver est le plus fréquent et on l'affiche
+	if ((compteurStat > compteurDyna) && (compteurStat > compteurInte))
 		printf("\nLe TermSaver le plus utilisé est le Statique\n") ;
-        else if ((compteurDyna > compteurStat) && (compteurDyna > compteurInte))
+        if ((compteurDyna > compteurStat) && (compteurDyna > compteurInte))
                 printf("\nLe TermSaver le plus utilisé est le Dynamique\n") ;
-        else if ((compteurInte > compteurStat) && (compteurInte > compteurDyna))
+        if ((compteurInte > compteurStat) && (compteurInte > compteurDyna))
                 printf("\nLe TermSaver le plus utilisé est l'Interactif\n") ;
 
 	fclose(stats) ;
