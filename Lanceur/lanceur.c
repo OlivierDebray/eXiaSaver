@@ -7,7 +7,7 @@
 
 #include "lecture_stats.c"	
 
-void stats(int type , int param) ;	// Prototype de la fonction de sauvegarde des statistiques
+void stats(int type , char param[5]) ;	// Prototype de la fonction de sauvegarde des statistiques
 
 int aleatoire()		// Fonction permettant de créer un nombre aléatoire compris entre 0 et 255
 {
@@ -48,11 +48,11 @@ void lancementStatique()
 		i++ ;
 	}
 
-	stats(1 , choix) ;	// On enregistre le résultat dans les statistiques
-
-	char arg[100] ;
+	char arg[5] ;
 
 	sprintf(arg , "%d" , choix) ;
+
+        stats(1 , arg) ;        // On enregistre le résultat dans les statistiques
 
 	if (execl(strcat(getenv("EXIASAVER_HOME") , "/TS_Statique") , "TS_Statique" , arg , NULL) == -1)
 		printf("Erreur\n") ;
@@ -63,7 +63,7 @@ void lancementDynamique()
         printf("Lancement du TermSaver dynamique\n") ;
         sleep(1) ;
 
-	int taille ;
+	char taille[5] = " " ;
 
 	stats(2 , taille) ;      // On enregistre le résultat dans les statistiques
 }
@@ -73,7 +73,7 @@ void lancementInteractif()
         printf("Lancement du TermSaver interactif\n") ;
         sleep(1) ;
 
-	int pos ;
+	char pos[5] = " " ;
 
 	stats(3 , pos) ;      // On enregistre le résultat dans les statistiques
 }
@@ -104,7 +104,7 @@ void lancementAleatoire()
 	}
 }
 
-void stats(int type , int param)
+void stats(int type , char param[5])
 {
 	time_t t = time(NULL) ;		// On initialise l'heure
 	char *p ;	// On définit une chaine de caractère qui servira à stocker l'heure
@@ -131,5 +131,7 @@ void stats(int type , int param)
 			break ;
 	}
 
-	fprintf(stats , "     %d\n" , param) ;	// On écrit la valeur du paramètre
+	fprintf(stats , "     %s\n" , param) ;	// On écrit la valeur du paramètre
+
+	fclose(stats) ;
 }

@@ -1,57 +1,35 @@
-     Tue Dec 13 15:15:00 2016     |     Dynamique    |     1852665777
-     Tue Dec 13 15:15:02 2016     |     Statique     |     1
-     Tue Dec 13 15:15:03 2016     |     Interactif   |     1797758500
-     Tue Dec 13 15:15:04 2016     |     Dynamique    |     -798795840
-     Tue Dec 13 15:15:05 2016     |     Interactif   |     -1583556590
-     Tue Dec 13 15:15:06 2016     |     Interactif   |     -223186819
-     Tue Dec 13 15:15:07 2016     |     Dynamique    |     -1311662302
-     Tue Dec 13 15:15:08 2016     |     Statique     |     2
-     Tue Dec 13 15:15:09 2016     |     Statique     |     4
-     Tue Dec 13 15:15:10 2016     |     Statique     |     3
-     Tue Dec 13 15:15:11 2016     |     Statique     |     3
-     Tue Dec 13 15:15:12 2016     |     Interactif   |     -1125066661
-     Tue Dec 13 15:15:13 2016     |     Interactif   |     -1663826640
-     Tue Dec 13 15:15:14 2016     |     Interactif   |     2052013525
-     Tue Dec 13 15:15:15 2016     |     Dynamique    |     -935543352
-     Tue Dec 13 15:15:16 2016     |     Statique     |     3
-     Tue Dec 13 15:15:17 2016     |     Interactif   |     402642322
-     Tue Dec 13 15:15:18 2016     |     Dynamique    |     -222227402
-     Tue Dec 13 15:15:19 2016     |     Dynamique    |     1986912826
-     Tue Dec 13 15:15:21 2016     |     Dynamique    |     -1153164542
-     Tue Dec 13 15:15:22 2016     |     Statique     |     3
-     Tue Dec 13 15:15:23 2016     |     Interactif   |     -1734281586
-     Tue Dec 13 15:15:24 2016     |     Dynamique    |     -1323487689
-     Tue Dec 13 15:15:25 2016     |     Dynamique    |     313802385
-     Tue Dec 13 16:18:13 2016     |     Dynamique    |     -2009700331
-     Tue Dec 13 16:31:39 2016     |     Statique     |     3
-     Tue Dec 13 16:41:28 2016     |     Statique     |     2
-     Tue Dec 13 17:07:36 2016     |     Statique     |     1
-     Tue Dec 13 17:07:58 2016     |     Statique     |     1
-     Tue Dec 13 17:08:00 2016     |     Statique     |     1
-     Tue Dec 13 17:08:01 2016     |     Statique     |     2
-     Tue Dec 13 17:08:04 2016     |     Statique     |     3
-     Tue Dec 13 17:08:07 2016     |     Statique     |     2
-     Tue Dec 13 22:35:51 2016     |     Dynamique    |     1363714737
-     Tue Dec 13 22:36:02 2016     |     Dynamique    |     12257055
-     Tue Dec 13 22:36:12 2016     |     Dynamique    |     32583
-     Tue Dec 13 22:36:16 2016     |     Interactif   |     32743
-     Wed Dec 14 09:41:17 2016     |     Statique     |     1
-     Wed Dec 14 10:56:56 2016     |     Dynamique    |     750980621
-     Wed Dec 14 12:16:41 2016     |     Dynamique    |     1693519284
-     Wed Dec 14 12:17:15 2016     |     Interactif   |     -1279391641
-     Wed Dec 14 12:20:12 2016     |     Dynamique    |     723612826
-     Wed Dec 14 12:22:56 2016     |     Dynamique    |     -1075943561
-     Wed Dec 14 12:24:04 2016     |     Dynamique    |     1981660133
-     Wed Dec 14 13:08:38 2016     |     Dynamique    |     1229467448
-     Wed Dec 14 13:08:40 2016     |     Interactif   |     -500484193
-     Wed Dec 14 13:08:42 2016     |     Dynamique    |     -301733660
-     Wed Dec 14 13:08:43 2016     |     Interactif   |     -1532682923
-     Wed Dec 14 13:08:45 2016     |     Dynamique    |     -1336751605
-     Wed Dec 14 13:08:47 2016     |     Interactif   |     -479928264
-     Wed Dec 14 13:19:36 2016     |     Dynamique    |     1710345805
-     Wed Dec 14 13:38:45 2016     |     Interactif   |     -1451002033
-     Wed Dec 14 13:59:38 2016     |     Dynamique    |     1786256008
-     Wed Dec 14 13:59:40 2016     |     Interactif   |     -1505300081
-     Wed Dec 14 15:33:19 2016     |     Interactif   |     -703939720
-     Wed Dec 14 15:33:21 2016     |     Interactif   |     -8032446
-     Wed Dec 14 15:33:23 2016     |     Dynamique    |     -1969512398
+     Wed Dec 14 20:07:29 2016     |     Dynamique    |      
+     Wed Dec 14 20:11:00 2016     |     Interactif   |      
+     Wed Dec 14 20:16:20 2016     |     Interactif   |      
+     Wed Dec 14 20:21:37 2016     |     Dynamique    |     5x3
+     Wed Dec 14 20:37:24 2016     |     Statique     |     4
+     Wed Dec 14 20:37:27 2016     |     Statique     |     4
+     Wed Dec 14 20:40:05 2016     |     Statique     |     2
+     Wed Dec 14 20:40:09 2016     |     Statique     |     3
+     Wed Dec 14 20:40:31 2016     |     Statique     |     1
+     Wed Dec 14 20:40:43 2016     |     Interactif   |      
+     Wed Dec 14 20:40:46 2016     |     Dynamique    |      
+     Wed Dec 14 20:40:47 2016     |     Statique     |     2
+     Wed Dec 14 20:54:24 2016     |     Statique     |     2
+     Wed Dec 14 20:54:28 2016     |     Statique     |     4
+     Wed Dec 14 20:54:30 2016     |     Statique     |     2
+     Wed Dec 14 20:54:33 2016     |     Statique     |     1
+     Wed Dec 14 20:55:35 2016     |     Statique     |     2
+     Thu Dec 15 09:50:43 2016     |     Dynamique    |      
+     Thu Dec 15 09:50:45 2016     |     Statique     |     3
+     Thu Dec 15 09:50:52 2016     |     Statique     |     2
+     Thu Dec 15 09:50:55 2016     |     Statique     |     2
+     Thu Dec 15 09:50:57 2016     |     Statique     |     1
+     Thu Dec 15 09:51:31 2016     |     Dynamique    |      
+     Thu Dec 15 09:51:33 2016     |     Statique     |     4
+     Thu Dec 15 09:53:05 2016     |     Statique     |     3
+     Thu Dec 15 09:53:12 2016     |     Statique     |     1
+     Thu Dec 15 10:08:04 2016     |     Statique     |     2
+     Thu Dec 15 11:01:53 2016     |     Statique     |     1
+     Thu Dec 15 11:01:57 2016     |     Statique     |     1
+     Thu Dec 15 11:02:00 2016     |     Dynamique    |      
+     Thu Dec 15 11:02:04 2016     |     Dynamique    |      
+     Thu Dec 15 11:02:07 2016     |     Interactif   |      
+     Thu Dec 15 11:02:16 2016     |     Statique     |     3
+     Thu Dec 15 11:02:18 2016     |     Statique     |     4
+     Thu Dec 15 11:02:22 2016     |     Statique     |     3
