@@ -55,7 +55,7 @@ void lancementStatique()
         stats(1 , arg) ;        // On enregistre le résultat dans les statistiques
 
 	if (execl(strcat(getenv("EXIASAVER_HOME") , "/TS_Statique") , "TS_Statique" , arg , NULL) == -1)
-		printf("Erreur\n") ;
+		printf("Erreur de lancement\n") ;
 }
 
 void lancementDynamique()
@@ -66,6 +66,9 @@ void lancementDynamique()
 	char taille[5] = " " ;
 
 	stats(2 , taille) ;      // On enregistre le résultat dans les statistiques
+
+	if (execl(strcat(getenv("EXIASAVER_HOME") , "/TS_Dynamique") , "TS_Dynamique" , taille , NULL) == -1)
+		printf("Erreur de lancement\n") ;
 }
 
 void lancementInteractif()
@@ -73,9 +76,17 @@ void lancementInteractif()
         printf("Lancement du TermSaver interactif\n") ;
         sleep(1) ;
 
-	char pos[5] = " " ;
+	int rand = aleatoire() ;
+	int random = ((rand%4)+1) ;
+
+	char pos[5] ;
+
+	sprintf(pos , "Position %d" , random) ;
 
 	stats(3 , pos) ;      // On enregistre le résultat dans les statistiques
+
+	if (execl(strcat(getenv("EXIASAVER_HOME") , "/TS_Interactif") , "TS_Interactif" , pos , NULL) == -1)
+		printf("Erreur de lancement\n") ;
 }
 
 void lancementStatistiques()
