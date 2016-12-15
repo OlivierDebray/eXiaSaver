@@ -33,3 +33,4 @@
      Thu Dec 15 11:02:16 2016     |     Statique     |     3
      Thu Dec 15 11:02:18 2016     |     Statique     |     4
      Thu Dec 15 11:02:22 2016     |     Statique     |     3
+     Thu Dec 15 15:00:54 2016     |     Dynamique    |      
